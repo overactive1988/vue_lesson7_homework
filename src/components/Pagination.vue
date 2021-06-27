@@ -50,8 +50,5 @@ export default {
       },
     },
   },
-  created() {
-    // console.log(this.page);
-  },
 };
 </script>

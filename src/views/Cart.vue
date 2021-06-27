@@ -15,10 +15,6 @@
           >
             cached
           </span>
-          <!-- <i
-            v-if="loadingStatus.loadingItem === 1"
-            class="fas fa-spinner fa-pulse"
-          ></i> -->
           清空購物車
         </button>
       </div>

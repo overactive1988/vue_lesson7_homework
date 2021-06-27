@@ -3,7 +3,8 @@
     <router-link to="/">回到前台</router-link> |
     <router-link to="/admin">管理介面首頁</router-link> |
     <router-link to="/admin/products">商品列表</router-link> |
-    <router-link to="/admin/orders">訂單列表</router-link>
+    <router-link to="/admin/orders">訂單列表</router-link> |
+    <router-link to="/admin/coupon">優惠券設定</router-link>
   </div>
   <h1 class="text-center">管理介面</h1>
 
