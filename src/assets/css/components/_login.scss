@@ -1,0 +1,69 @@
+.login-article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fs-7 {
+  font-size: 0.8rem;
+}
+
+.text-main {
+  color: #2af2da;
+}
+a.text-main {
+  opacity: 0.7;
+  &:hover {
+    color: #2af2da;
+    opacity: 1;
+    transition: 0.3s ease;
+  }
+}
+.text-pray {
+  color: #757575;
+}
+
+.text-link {
+  color: rgba(255, 255, 255, 0.2);
+  &:hover {
+    color: #2af2da;
+    transition: 0.3s ease;
+  }
+}
+
+.border-double {
+  box-shadow: 0 0 0 1px #000, 0 0 0 3px #2af2da;
+  &:focus {
+    box-shadow: 0 0 0 1px #000, 0 0 0 3px #2af2da;
+  }
+}
+
+.login {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 85%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  border-top: 5px solid #2af2da;
+}
+
+.login-title {
+  border-bottom: 2px solid #2af2da;
+}
+
+.login-btn {
+  background: #2af2da;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+    transition: 0.3s ease;
+  }
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+  padding: 15px;
+}

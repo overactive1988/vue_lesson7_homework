@@ -1,0 +1,9 @@
+@import "~bootstrap/scss/functions";
+@import "./helps/variables";
+@import "~bootstrap/scss/mixins";
+// sass 對應node_modules
+@import "~bootstrap";
+// 自定義css
+@import "./components/layout";
+@import "./components/animation";
+@import "./components/login";
