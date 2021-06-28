@@ -13,6 +13,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.vue";
 import router from "./router";
 
+import { date, currency } from './methods/filters';
+
 // 定義驗證規則
 Object.keys(rules).forEach((rule) => {
   if (rule !== "default") {
@@ -30,6 +32,11 @@ configure({
 setLocale("zh_TW");
 
 const app = createApp(App);
+
+app.config.globalProperties.$filters = {
+  date,
+  currency,
+};
 
 app.use(VueAxios, axios);
 app.use(router);

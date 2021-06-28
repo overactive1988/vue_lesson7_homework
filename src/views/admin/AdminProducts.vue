@@ -159,20 +159,20 @@ export default {
             imagesUrl: [],
           };
           this.isNew = true;
-          this.$refs.adminControlModal.openAdminModal();
+          this.$refs.adminControlModal.openModal();
           break;
         case "edit":
           // 因為傳參考特性會連動到資料，因此將資料進行淺層複製
           this.getData();
           this.tempProduct = { ...item };
           this.isNew = false;
-          this.$refs.adminControlModal.openAdminModal();
+          this.$refs.adminControlModal.openModal();
           break;
         case "delete":
           // 因為傳參考特性會連動到資料，因此將資料進行淺層複製
           this.tempProduct = { ...item };
           // Modal需要拿到 title 和刪除按鈕時需要獲得 id
-          this.$refs.adminDelModal.openAdminModal();
+          this.$refs.adminDelModal.openModal();
           break;
         default:
           break;

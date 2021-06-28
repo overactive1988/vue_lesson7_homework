@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    ref="productModal"
+    ref="modal"
     tabindex="-1"
     aria-labelledby="productModalLabel"
     aria-hidden="true"
@@ -261,7 +261,7 @@
 </template>
 
 <script>
-import Modal from "bootstrap/js/dist/modal";
+import modalMixin from "@/mixins/modalMixin";
 export default {
   props: {
     whereProduct: {
@@ -309,22 +309,12 @@ export default {
           console.log(err);
         });
     },
-    openAdminModal() {
-      this.modal.show();
-    },
-    closeAdminModal() {
-      this.modal.hide();
-    },
   },
   data() {
     return {
       modal: "",
     };
   },
-  mounted() {
-    this.modal = new Modal(this.$refs.productModal, {
-      keyboard: false,
-    });
-  },
+  mixins: [modalMixin],
 };
 </script>

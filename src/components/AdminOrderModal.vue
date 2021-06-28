@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    ref="orderModal"
+    ref="modal"
     tabindex="-1"
     aria-labelledby="customerOrderModalLabel"
     aria-hidden="true"
@@ -50,7 +50,7 @@
                   </th>
                   <td>{{ item.qty }} / {{ item.product.unit }}</td>
                   <td class="text-end">{{ item.product.price }}</td>
-                  <td class="text-end">{{item.qty*item.product.price }}</td>
+                  <td class="text-end">{{ item.qty * item.product.price }}</td>
                 </tr>
               </tbody>
             </table>
@@ -89,7 +89,7 @@
                   </tr>
                   <tr>
                     <th>下單時間</th>
-                    <td>111</td>
+                    <td>{{ $filters.date(tempOrder.create_at) }}</td>
                   </tr>
                   <tr>
                     <th>付款時間</th>
@@ -109,7 +109,7 @@
                   </tr>
                   <tr>
                     <th>總金額</th>
-                    <td>{{tempOrder.total}}</td>
+                    <td>{{ tempOrder.total }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import Modal from "bootstrap/js/dist/modal";
+import modalMixin from '@/mixins/modalMixin';
 export default {
   emits: ["update-order"],
   props: {
@@ -171,23 +171,11 @@ export default {
       tempOrder: {},
     };
   },
-  methods: {
-    openAdminModal() {
-      this.modal.show();
-    },
-    closeAdminModal() {
-      this.modal.hide();
-    },
-  },
-  mounted() {
-    this.modal = new Modal(this.$refs.orderModal, {
-      keyboard: false,
-    });
-  },
   watch: {
     editOrder() {
       this.tempOrder = this.editOrder;
     },
   },
+  mixins: [modalMixin],
 };
 </script>

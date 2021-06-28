@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th width="8%">訂單日期</th>
-            <th width="6%">客戶姓名</th>
+            <th width="8%">客戶姓名</th>
             <th width="10%">客戶信箱</th>
             <th width="10%">客戶電話</th>
             <th width="18%">客戶地址</th>
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <tr class="align-middle" v-for="item in orders" :key="item.id">
-            <td>{{ item.create_at }}</td>
+            <td>{{ $filters.date(item.create_at) }}</td>
             <td>{{ item.user.name }}</td>
             <td>{{ item.user.email }}</td>
             <td>{{ item.user.tel }}</td>
@@ -174,10 +174,10 @@ export default {
           this.tempOrder = { ...item };
           console.clear();
           console.log(this.tempOrder);
-          this.$refs.adminOrderModal.openAdminModal();
+          this.$refs.adminOrderModal.openModal();
           break;
         case "delete":
-          this.$refs.adminOrderDelModal.openAdminModal();
+          this.$refs.adminOrderDelModal.openModal();
           break;
         default:
           break;
@@ -190,7 +190,7 @@ export default {
         .put(url, { data: temp }) // post 或 put
         .then((res) => {
           if (res.data.success) {
-            this.$refs.adminOrderModal.closeAdminModal(); // 關掉 modal
+            this.$refs.adminOrderModal.closeModal(); // 關掉 modal
             this.getOrder(); // 重整畫面
           } else {
             alert(res.data.message);

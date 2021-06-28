@@ -1,7 +1,7 @@
 <template>
   <div
     id="delProductModal"
-    ref="delProductModal"
+    ref="modal"
     class="modal fade"
     tabindex="-1"
     aria-labelledby="delProductModalLabel"
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Modal from "bootstrap/js/dist/modal";
+import modalMixin from "@/mixins/modalMixin";
 
 export default {
   props: {
@@ -63,18 +63,6 @@ export default {
       modal: "",
     };
   },
-  methods: {
-    openAdminModal() {
-      this.modal.show();
-    },
-    closeAdminModal() {
-      this.modal.hide();
-    },
-  },
-  mounted() {
-    this.modal = new Modal(this.$refs.delProductModal, {
-      keyboard: false,
-    });
-  },
+  mixins: [modalMixin],
 };
 </script>
