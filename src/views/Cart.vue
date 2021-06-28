@@ -26,8 +26,8 @@
             <th width="10%">縮圖</th>
             <th width="10%">類別</th>
             <th width="15%">品名</th>
-            <th width="20%">產品敘述</th>
-            <th width="10%">數量</th>
+            <th width="15%">產品敘述</th>
+            <th width="15%">數量</th>
             <th width="10%" class="text-end">單價</th>
             <th width="10%" class="text-end">合計</th>
           </tr>

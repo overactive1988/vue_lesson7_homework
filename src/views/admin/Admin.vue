@@ -1,22 +1,23 @@
 <template>
-  <div id="nav" class="text-center">
-    <router-link to="/">回到前台</router-link> |
-    <router-link to="/admin">管理介面首頁</router-link> |
-    <router-link to="/admin/products">商品列表</router-link> |
-    <router-link to="/admin/orders">訂單列表</router-link> |
-    <router-link to="/admin/coupon">優惠券設定</router-link>
-  </div>
-  <h1 class="text-center">管理介面</h1>
-
+  <header>
+    <AdminNavbar></AdminNavbar>
+  </header>
   <router-view v-if="check" />
+  <AdminFooter></AdminFooter>
 </template>
 
 <script>
+import AdminNavbar from "../../components/AdminNavbar.vue";
+import AdminFooter from "../../components/AdminFooter.vue";
 export default {
   data() {
     return {
       check: false,
     };
+  },
+  components: {
+    AdminNavbar,
+    AdminFooter,
   },
   created() {
     // 取得 Token
@@ -52,14 +53,4 @@ export default {
 
 <style lang="scss">
 @import "../../assets/css/back";
-#nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #562a4d;
-    }
-  }
-}
 </style>

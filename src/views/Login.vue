@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <Navbar></Navbar>
+  <div class="container my-10">
     <div class="mt-4">
       <h1 class="text-center">後台登入</h1>
       <article class="login-article text-center mt-4">
@@ -7,7 +8,7 @@
           <div class="login p-4 rounded">
             <div class="row justify-content-center">
               <h1 class="h3 pb-3 mb-3 font-weight-normal text-main login-title">
-                請先登入
+                請輸入管理者資料
               </h1>
               <div class="col-auto">
                 <form id="form" class="form-signin" @submit.prevent="login">
@@ -66,9 +67,12 @@
       </article>
     </div>
   </div>
+  <Footer></Footer>
 </template>
 
 <script>
+import Navbar from "../components/Navbar.vue";
+import Footer from "../components/Footer.vue";
 export default {
   data() {
     // 一律使用 function return 資料定義初始化都在這
@@ -76,6 +80,10 @@ export default {
     return {
       loginData: {},
     };
+  },
+  components: {
+    Navbar,
+    Footer,
   },
   methods: {
     // 函式的集合

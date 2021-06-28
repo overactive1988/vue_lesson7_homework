@@ -9,12 +9,12 @@
 }
 
 .text-main {
-  color: #2af2da;
+  color: #efefef;
 }
 a.text-main {
   opacity: 0.7;
   &:hover {
-    color: #2af2da;
+    color: #efefef;
     opacity: 1;
     transition: 0.3s ease;
   }
@@ -26,15 +26,15 @@ a.text-main {
 .text-link {
   color: rgba(255, 255, 255, 0.2);
   &:hover {
-    color: #2af2da;
+    color: #efefef;
     transition: 0.3s ease;
   }
 }
 
 .border-double {
-  box-shadow: 0 0 0 1px #000, 0 0 0 3px #2af2da;
+  box-shadow: 0 0 0 1px #000, 0 0 0 3px #efefef;
   &:focus {
-    box-shadow: 0 0 0 1px #000, 0 0 0 3px #2af2da;
+    box-shadow: 0 0 0 1px #000, 0 0 0 3px #efefef;
   }
 }
 
@@ -45,15 +45,15 @@ a.text-main {
     rgba(0, 0, 0, 1) 85%,
     rgba(0, 0, 0, 0.5) 100%
   );
-  border-top: 5px solid #2af2da;
+  border-top: 5px solid #efefef;
 }
 
 .login-title {
-  border-bottom: 2px solid #2af2da;
+  border-bottom: 2px solid #efefef;
 }
 
 .login-btn {
-  background: #2af2da;
+  background: #efefef;
   opacity: 0.7;
   &:hover {
     opacity: 1;

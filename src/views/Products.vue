@@ -56,7 +56,7 @@
       <p class="mt-4">
         總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
       </p>
-      <div class="d-flex justify-content-center mt-5">
+      <div class="d-flex justify-content-center mt-5 mb-6">
         <Pagination :page="pagination" @get-product="getProducts"></Pagination>
       </div>
     </div>
