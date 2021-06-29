@@ -34,12 +34,12 @@
                     type="text"
                     class="form-control"
                     placeholder="請輸入圖片連結"
-                    v-model.trim="whereProduct.imageUrl"
+                    v-model.trim="newProduct.imageUrl"
                   />
                   <img
                     class="img-fluid my-3 form-img"
-                    :src="whereProduct.imageUrl"
-                    :alt="whereProduct.title"
+                    :src="newProduct.imageUrl"
+                    :alt="newProduct.title"
                   />
                 </div>
 
@@ -59,10 +59,10 @@
               </div>
               <div class="mt-4 mb-1">多圖新增</div>
               <!-- 大寫開頭 建構函式 -->
-              <div v-if="Array.isArray(whereProduct.imagesUrl)">
+              <div v-if="Array.isArray(newProduct.imagesUrl)">
                 <div
                   class="mb-4"
-                  v-for="(item, index) in whereProduct.imagesUrl"
+                  v-for="(item, index) in newProduct.imagesUrl"
                   :key="'addImage' + index"
                 >
                   <hr />
@@ -77,7 +77,7 @@
                       type="text"
                       class="form-control"
                       placeholder="請輸入圖片連結"
-                      v-model="whereProduct.imagesUrl[index]"
+                      v-model="newProduct.imagesUrl[index]"
                     />
                     <img class="img-fluid my-3 form-img" :src="item" alt />
 
@@ -103,7 +103,7 @@
                     <div class="mb2">
                       <button
                         class="btn btn-outline-danger btn-sm d-block w-100"
-                        @click="whereProduct.imagesUrl.splice(index, 1)"
+                        @click="newProduct.imagesUrl.splice(index, 1)"
                       >
                         刪除圖片
                       </button>
@@ -113,13 +113,13 @@
                 <div
                   class="mt-4"
                   v-if="
-                    !whereProduct.imagesUrl.length ||
-                    whereProduct.imagesUrl[whereProduct.imagesUrl.length - 1]
+                    !newProduct.imagesUrl.length ||
+                    newProduct.imagesUrl[newProduct.imagesUrl.length - 1]
                   "
                 >
                   <button
                     class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click="whereProduct.imagesUrl.push('')"
+                    @click="newProduct.imagesUrl.push('')"
                   >
                     新增圖片
                   </button>
@@ -144,7 +144,7 @@
                   type="text"
                   class="form-control mt-1"
                   placeholder="請輸入標題"
-                  v-model.trim="whereProduct.title"
+                  v-model.trim="newProduct.title"
                 />
               </div>
 
@@ -156,7 +156,7 @@
                     type="text"
                     class="form-control mt-1"
                     placeholder="請輸入分類"
-                    v-model="whereProduct.category"
+                    v-model="newProduct.category"
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -166,7 +166,7 @@
                     type="text"
                     class="form-control mt-1"
                     placeholder="請輸入單位"
-                    v-model="whereProduct.unit"
+                    v-model="newProduct.unit"
                   />
                 </div>
               </div>
@@ -180,7 +180,7 @@
                     min="0"
                     class="form-control mt-1"
                     placeholder="請輸入原價"
-                    v-model.number="whereProduct.origin_price"
+                    v-model.number="newProduct.origin_price"
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -191,7 +191,7 @@
                     min="0"
                     class="form-control mt-1"
                     placeholder="請輸入售價"
-                    v-model.number="whereProduct.price"
+                    v-model.number="newProduct.price"
                   />
                 </div>
               </div>
@@ -205,7 +205,7 @@
                   class="form-control mt-1"
                   placeholder="請輸入產品描述"
                   rows="6"
-                  v-model.trim="whereProduct.description"
+                  v-model.trim="newProduct.description"
                 >
                 </textarea>
               </div>
@@ -217,7 +217,7 @@
                   class="form-control mt-1"
                   placeholder="請輸入商品規格"
                   rows="4"
-                  v-model.trim="whereProduct.content"
+                  v-model.trim="newProduct.content"
                 >
                 </textarea>
               </div>
@@ -229,7 +229,7 @@
                     type="checkbox"
                     :true-value="1"
                     :false-value="0"
-                    v-model="whereProduct.is_enabled"
+                    v-model="newProduct.is_enabled"
                   />
                   <label class="form-check-label" for="is_enabled"
                     >是否啟用</label
@@ -274,7 +274,7 @@ export default {
   methods: {
     // 新增陣列圖片
     createImages() {
-      this.whereProduct.imagesUrl = [""];
+      this.newProduct.imagesUrl = [""];
     },
     uploadMainImgage(e) {
       console.dir(e);
@@ -286,7 +286,7 @@ export default {
         .post(url, formData)
         .then((res) => {
           console.log(res);
-          this.whereProduct.imageUrl = res.data.imageUrl;
+          this.newProduct.imageUrl = res.data.imageUrl;
         })
         .catch((err) => {
           console.log(err);
@@ -302,7 +302,7 @@ export default {
         .post(url, formData)
         .then((res) => {
           console.log(res);
-          this.whereProduct.imagesUrl[this.whereProduct.imagesUrl.length - 1] =
+          this.newProduct.imagesUrl[this.newProduct.imagesUrl.length - 1] =
             res.data.imageUrl;
         })
         .catch((err) => {
@@ -313,7 +313,13 @@ export default {
   data() {
     return {
       modal: "",
+      newProduct: [],
     };
+  },
+  watch: {
+    whereProduct() {
+      this.newProduct = this.whereProduct;
+    },
   },
   mixins: [modalMixin],
 };
