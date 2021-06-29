@@ -10,7 +10,8 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-primary text-white">
           <h5 id="productModalLabel" class="modal-title">
-            <span>新增產品</span>
+            <span v-if="whereProduct.title">編輯商品</span>
+            <span v-else>新增商品</span>
           </h5>
           <button
             type="button"

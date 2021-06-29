@@ -41,7 +41,7 @@
               <button
                 type="button"
                 class="btn btn-outline-danger btn-sm"
-                @click="deleteOrder(item)"
+                @click="openModal('delete', item)"
               >
                 <span
                   v-if="loadingStatus.loadingItem === item.id"
@@ -61,7 +61,7 @@
             <button
               class="btn btn-outline-danger"
               type="button"
-              @click="openModal('delete', item)"
+              @click="openModal('deleteall', item)"
               :disabled="orders <= 1"
             >
               <span
@@ -87,8 +87,13 @@
       @update-order="updateOrder"
     ></AdminOrderModal>
     <!-- 刪除按鈕彈出 Modal -->
-    <DelAllOrders
+    <DelOrdersModal
       ref="adminOrderDelModal"
+      :delete-order="tempOrder"
+      @delete-orders="deleteOrder"
+    ></DelOrdersModal>
+    <DelAllOrders
+      ref="adminAllOrderDelModal"
       @delete-all-orders="deleteAllOrders"
     ></DelAllOrders>
   </div>
@@ -97,7 +102,8 @@
 <script>
 import Pagination from "@/components/Pagination.vue";
 import AdminOrderModal from "@/components/AdminOrderModal.vue";
-import DelAllOrders from "@/components/DelAllOrders.vue";
+import DelOrdersModal from "@/components/DelOrdersModal.vue";
+import DelAllOrders from "@/components/DelAllOrdersModal.vue";
 
 export default {
   data() {
@@ -113,6 +119,7 @@ export default {
   components: {
     Pagination,
     AdminOrderModal,
+    DelOrdersModal,
     DelAllOrders,
   },
   methods: {
@@ -175,7 +182,13 @@ export default {
           this.$refs.adminOrderModal.openModal();
           break;
         case "delete":
+          // 因為傳參考特性會連動到資料，因此將資料進行淺層複製
+          this.tempOrder = { ...item };
+          // Modal需要拿到 title 和刪除按鈕時需要獲得 id
           this.$refs.adminOrderDelModal.openModal();
+          break;
+        case "deleteall":
+          this.$refs.adminAllOrderDelModal.openModal();
           break;
         default:
           break;

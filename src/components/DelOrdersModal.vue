@@ -1,17 +1,17 @@
 <template>
   <div
-    id="delAllOrderModal"
+    id="delOrderModal"
     ref="modal"
     class="modal fade"
     tabindex="-1"
-    aria-labelledby="delAllOrderModalLabel"
+    aria-labelledby="delOrderModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
-          <h5 id="delAllOrderModalLabel" class="modal-title">
-            <span>刪除全部訂單</span>
+          <h5 id="delOrderModalLabel" class="modal-title">
+            <span>刪除單筆訂單</span>
           </h5>
           <button
             type="button"
@@ -20,9 +20,10 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body text-center">
-          是否刪除所有訂單<br>
-          <strong class="text-danger fs-4">刪除後將無法復原</strong>
+        <div v-if="deleteOrder.id" class="modal-body">
+          是否刪除
+          <strong class="text-danger">{{ deleteOrder.user.name }}</strong>
+          的訂單(刪除後將無法恢復)。
         </div>
         <div class="modal-footer">
           <button
@@ -33,7 +34,7 @@
             取消
           </button>
           <button
-            @click="$emit('delete-all-orders')"
+            @click="$emit('delete-orders')"
             type="button"
             class="btn btn-danger"
           >
@@ -46,8 +47,16 @@
 </template>
 
 <script>
-import modalMixin from '@/assets/js/mixins/modalMixin';
+import modalMixin from "@/assets/js/mixins/modalMixin";
 export default {
+  props: {
+    deleteOrder: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {
       modal: "",

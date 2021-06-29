@@ -10,7 +10,7 @@
           <th width="10%">產品名稱</th>
           <th width="27%">產品敘述</th>
           <th width="20%">商品規格</th>
-          <th width="8%">價格</th>
+          <th width="9%">價格</th>
           <th width="20%"></th>
         </tr>
       </thead>
