@@ -147,6 +147,7 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.loadingStatus.loadingItem = "";
+            this.$refs.adminOrderDelModal.closeModal();
             alert(res.data.message);
             this.getOrder();
           }
@@ -157,12 +158,13 @@ export default {
     },
     deleteAllOrders() {
       this.loadingStatus.loadingItem = 1;
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/all`;
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders/all`;
       this.$http
         .delete(url)
         .then((res) => {
           if (res.data.success) {
             this.loadingStatus.loadingItem = "";
+            this.$refs.adminAllOrderDelModal.closeModal();
             alert(res.data.message);
             this.getOrder();
           }

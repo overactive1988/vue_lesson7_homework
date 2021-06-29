@@ -34,7 +34,7 @@
             取消
           </button>
           <button
-            @click="$emit('delete-orders')"
+            @click="$emit('delete-orders', deleteOrder)"
             type="button"
             class="btn btn-danger"
           >
