@@ -49,8 +49,12 @@
                     {{ item.product.category }}
                   </th>
                   <td>{{ item.qty }} / {{ item.product.unit }}</td>
-                  <td class="text-end">{{ item.product.price }}</td>
-                  <td class="text-end">{{ item.qty * item.product.price }}</td>
+                  <td class="text-end">
+                    {{ $filters.currency(item.product.price) }}
+                  </td>
+                  <td class="text-end">
+                    {{ $filters.currency(item.qty * item.product.price) }}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -94,8 +98,10 @@
                   <tr>
                     <th>付款時間</th>
                     <td>
-                      <span v-if="tempOrder.paid_date"> 123 </span>
-                      <span v-else>時間不正確</span>
+                      <span v-if="tempOrder.paid_date">
+                        {{ $filters.date(tempOrder.paid_date) }}
+                      </span>
+                      <span v-else>尚無資訊</span>
                     </td>
                   </tr>
                   <tr>
@@ -109,7 +115,7 @@
                   </tr>
                   <tr>
                     <th>總金額</th>
-                    <td>{{ tempOrder.total }}</td>
+                    <td>{{ $filters.currency(tempOrder.total) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -123,6 +129,7 @@
                   value=""
                   id="flexCheckDefault"
                   v-model="tempOrder.is_paid"
+                  @click="paidTime()"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   <span v-if="tempOrder.is_paid">已付款</span>
@@ -154,7 +161,8 @@
 </template>
 
 <script>
-import modalMixin from '@/assets/js/mixins/modalMixin';
+import modalMixin from "@/assets/js/mixins/modalMixin";
+
 export default {
   emits: ["update-order"],
   props: {
@@ -170,6 +178,15 @@ export default {
       modal: "",
       tempOrder: {},
     };
+  },
+  methods: {
+    paidTime() {
+      if (this.tempOrder.paid_date) {
+        this.tempOrder.paid_date = '';
+      } else {
+        this.tempOrder.paid_date = Math.floor(Date.now()/1000);
+      }
+    },
   },
   watch: {
     editOrder() {

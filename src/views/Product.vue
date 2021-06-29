@@ -22,13 +22,13 @@
             <p>商品描述：{{ tempProduct.description }}</p>
             <p>商品內容：{{ tempProduct.content }}</p>
             <div class="h5" v-if="!tempProduct.price">
-              {{ tempProduct.origin_price }} 元
+              {{ $filters.currency(tempProduct.origin_price) }} 元
             </div>
             <del class="h6" v-if="tempProduct.price"
-              >原價 {{ tempProduct.origin_price }} 元</del
+              >原價 {{ $filters.currency(tempProduct.origin_price) }} 元</del
             >
             <div class="h5" v-if="tempProduct.price">
-              現在只要 {{ tempProduct.price }} 元
+              現在只要 {{ $filters.currency(tempProduct.price) }} 元
             </div>
             <div>
               <div class="input-group text-center">

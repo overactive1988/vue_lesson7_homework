@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-primary fixed-bottom fs-7 p-3 text-center">
+  <footer class="bg-primary fs-7 p-3 text-center position-relative">
     <small class="position-absolute ms-2 text-light copyRight"
       >made by
       <a

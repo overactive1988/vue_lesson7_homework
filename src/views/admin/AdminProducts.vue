@@ -1,83 +1,81 @@
 <template>
-  <div class="container">
-    <div class="mt-4">
-      <h1 class="text-center">商品列表</h1>
-      <div class="text-end mt-4">
-        <button @click="openModal('new')" class="btn btn-primary">
-          建立新的產品
-        </button>
-      </div>
-      <table class="table mt-4">
-        <thead>
-          <tr>
-            <th width="6%">排序</th>
-            <th width="10%">產品縮圖</th>
-            <th width="10%">產品名稱</th>
-            <th width="20%">產品敘述</th>
-            <th width="12%">商品規格</th>
-            <th width="10%">原價</th>
-            <th width="10%">售價</th>
-            <th width="10%">是否啟用</th>
-            <th width="12%">刪除</th>
-          </tr>
-        </thead>
-        <!-- 使用 v-for 一定要帶上 :key -->
-        <tbody id="productList" v-for="item in products" :key="item">
-          <tr class="align-middle">
-            <td>{{ item.num }}</td>
-            <td>
-              <img class="product-img" :src="item.imageUrl" :alt="item.title" />
-            </td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.content }}</td>
-            <td>{{ item.origin_price }}</td>
-            <td>{{ item.price }}</td>
-            <td>
-              <span v-if="item.is_enabled" class="text-success">啟用</span>
-              <span v-else>未啟用</span>
-            </td>
-            <td>
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm"
-                  @click="openModal('edit', item)"
-                >
-                  編輯
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="openModal('delete', item)"
-                >
-                  刪除
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
-      </p>
-      <div class="d-flex justify-content-center mt-5">
-        <Pagination :page="pagination" @get-product="getData"></Pagination>
-      </div>
-
-      <!-- Modal -->
-      <AdminProductModal
-        ref="adminControlModal"
-        :where-product="tempProduct"
-        @update-product="updateProduct"
-      ></AdminProductModal>
-      <!-- 刪除按鈕彈出 Modal -->
-      <DelProductModal
-        ref="adminDelModal"
-        :temp-product="tempProduct"
-        @delete-product="deleteProduct"
-      ></DelProductModal>
+  <div class="container content">
+    <h1 class="text-center">商品列表</h1>
+    <div class="text-end mt-4">
+      <button @click="openModal('new')" class="btn btn-primary">
+        建立新的產品
+      </button>
     </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th width="6%">排序</th>
+          <th width="10%">產品縮圖</th>
+          <th width="10%">產品名稱</th>
+          <th width="20%">產品敘述</th>
+          <th width="12%">商品規格</th>
+          <th width="10%">原價</th>
+          <th width="10%">售價</th>
+          <th width="10%">是否啟用</th>
+          <th width="12%">刪除</th>
+        </tr>
+      </thead>
+      <!-- 使用 v-for 一定要帶上 :key -->
+      <tbody id="productList" v-for="item in products" :key="item">
+        <tr class="align-middle">
+          <td>{{ item.num }}</td>
+          <td>
+            <img class="product-img" :src="item.imageUrl" :alt="item.title" />
+          </td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.content }}</td>
+          <td>{{ $filters.currency(item.origin_price) }}</td>
+          <td>{{ $filters.currency(item.price) }}</td>
+          <td>
+            <span v-if="item.is_enabled" class="text-success">啟用</span>
+            <span v-else>未啟用</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                @click="openModal('edit', item)"
+              >
+                編輯
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="openModal('delete', item)"
+              >
+                刪除
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
+    </p>
+    <div class="d-flex justify-content-center mt-5">
+      <Pagination :page="pagination" @get-product="getData"></Pagination>
+    </div>
+
+    <!-- Modal -->
+    <AdminProductModal
+      ref="adminControlModal"
+      :where-product="tempProduct"
+      @update-product="updateProduct"
+    ></AdminProductModal>
+    <!-- 刪除按鈕彈出 Modal -->
+    <DelProductModal
+      ref="adminDelModal"
+      :temp-product="tempProduct"
+      @delete-product="deleteProduct"
+    ></DelProductModal>
   </div>
 </template>
 

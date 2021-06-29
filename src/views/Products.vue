@@ -1,64 +1,62 @@
 <template>
-  <div class="container">
-    <div class="mt-4">
-      <h1 class="text-center">產品列表</h1>
-      <!-- 產品列表 -->
-      <table class="table align-middle mt-4">
-        <thead>
-          <tr>
-            <th width="5%">排序</th>
-            <th width="10%">產品縮圖</th>
-            <th width="10%">產品名稱</th>
-            <th width="27%">產品敘述</th>
-            <th width="20%">商品規格</th>
-            <th width="8%">價格</th>
-            <th width="20%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="align-middle" v-for="item in products" :key="item.id">
-            <td>{{ item.num }}</td>
-            <td>
-              <img class="product-img" :src="item.imageUrl" :alt="item.title" />
-            </td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.content }}</td>
-            <td>
-              <div class="h5">{{ item.price }} 元</div>
-            </td>
-            <td>
-              <div class="btn-group btn-group-sm">
-                <router-link
-                  class="btn btn-outline-secondary"
-                  :to="`/product/${item.id}`"
-                  >查看更多</router-link
+  <div class="container content">
+    <h1 class="text-center">產品列表</h1>
+    <!-- 產品列表 -->
+    <table class="table align-middle mt-4">
+      <thead>
+        <tr>
+          <th width="8%">排序</th>
+          <th width="10%">產品縮圖</th>
+          <th width="10%">產品名稱</th>
+          <th width="27%">產品敘述</th>
+          <th width="20%">商品規格</th>
+          <th width="8%">價格</th>
+          <th width="20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="align-middle" v-for="item in products" :key="item.id">
+          <td>{{ item.num }}</td>
+          <td>
+            <img class="product-img" :src="item.imageUrl" :alt="item.title" />
+          </td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.content }}</td>
+          <td>
+            <div class="h5">{{ $filters.currency(item.price) }} 元</div>
+          </td>
+          <td>
+            <div class="btn-group btn-group-sm">
+              <router-link
+                class="btn btn-outline-secondary"
+                :to="`/product/${item.id}`"
+                >查看更多</router-link
+              >
+              <button
+                @click="addCart(item.id)"
+                type="button"
+                :disabled="loadingStatus.loadingItem === item.id + 1"
+                class="btn btn-outline-danger"
+              >
+                <span
+                  v-if="loadingStatus.loadingItem === item.id + 1"
+                  class="material-icons animate-spin"
                 >
-                <button
-                  @click="addCart(item.id)"
-                  type="button"
-                  :disabled="loadingStatus.loadingItem === item.id + 1"
-                  class="btn btn-outline-danger"
-                >
-                  <span
-                    v-if="loadingStatus.loadingItem === item.id + 1"
-                    class="material-icons animate-spin"
-                  >
-                    cached
-                  </span>
-                  加到購物車
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="mt-4">
-        總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
-      </p>
-      <div class="d-flex justify-content-center mt-5 mb-6">
-        <Pagination :page="pagination" @get-product="getProducts"></Pagination>
-      </div>
+                  cached
+                </span>
+                加到購物車
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="mt-4">
+      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
+    </p>
+    <div class="d-flex justify-content-center mt-5 mb-6">
+      <Pagination :page="pagination" @get-product="getProducts"></Pagination>
     </div>
   </div>
 </template>

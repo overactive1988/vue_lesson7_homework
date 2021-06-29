@@ -1,55 +1,53 @@
 <template>
-  <div class="container">
-    <div class="mt-4">
-      <h1 class="text-center">購物車列表</h1>
-      <div class="text-end mb-2">
-        <button
-          class="btn btn-outline-danger"
-          type="button"
-          @click="deleteCartAll"
-          :disabled="cart.carts <= 1"
+  <div class="container content">
+    <h1 class="text-center">購物車列表</h1>
+    <div class="text-end mb-2">
+      <button
+        class="btn btn-outline-danger"
+        type="button"
+        @click="deleteCartAll"
+        :disabled="cart.carts <= 1"
+      >
+        <span
+          v-if="loadingStatus.loadingItem === 1"
+          class="material-icons animate-spin"
         >
-          <span
-            v-if="loadingStatus.loadingItem === 1"
-            class="material-icons animate-spin"
-          >
-            cached
-          </span>
-          清空購物車
-        </button>
-      </div>
-      <!-- 購物車列表 -->
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th width="5%"></th>
-            <th width="10%">縮圖</th>
-            <th width="10%">類別</th>
-            <th width="15%">品名</th>
-            <th width="15%">產品敘述</th>
-            <th width="15%">數量</th>
-            <th width="10%" class="text-end">單價</th>
-            <th width="10%" class="text-end">合計</th>
-          </tr>
-        </thead>
-        <tbody>
-          <UserCart
-            :loading="loadingStatus"
-            :cartitem="cart"
-            @delete-cart="deleteCart"
-            @add-product-num="addProductNum"
-            @cut-product-num="cutProductNum"
-            v-if="cart.carts"
-          ></UserCart>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="7" class="text-end">總計</td>
-            <td class="text-end">{{ this.cart.total }}</td>
-          </tr>
-        </tfoot>
-      </table>
+          cached
+        </span>
+        清空購物車
+      </button>
     </div>
+    <!-- 購物車列表 -->
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th width="5%"></th>
+          <th width="10%">縮圖</th>
+          <th width="10%">類別</th>
+          <th width="15%">品名</th>
+          <th width="15%">產品敘述</th>
+          <th width="15%">數量</th>
+          <th width="10%" class="text-end">單價</th>
+          <th width="10%" class="text-end">合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <UserCart
+          :loading="loadingStatus"
+          :cartitem="cart"
+          @delete-cart="deleteCart"
+          @add-product-num="addProductNum"
+          @cut-product-num="cutProductNum"
+          v-if="cart.carts"
+        ></UserCart>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7" class="text-end">總計</td>
+          <td class="text-end">{{ $filters.currency(this.cart.total) }}</td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
   <div class="container">
     <div class="my-5 row justify-content-center">

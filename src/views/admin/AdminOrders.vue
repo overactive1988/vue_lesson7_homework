@@ -1,98 +1,96 @@
 <template>
-  <div class="container">
-    <div class="mt-4">
-      <h1 class="text-center">訂單列表</h1>
-      <!-- 訂單列表 -->
-      <table class="table align-middle mt-4">
-        <thead>
-          <tr>
-            <th width="8%">訂單日期</th>
-            <th width="8%">客戶姓名</th>
-            <th width="10%">客戶信箱</th>
-            <th width="10%">客戶電話</th>
-            <th width="18%">客戶地址</th>
-            <th width="8%">訂單總價</th>
-            <th class="text-end" width="8%">付款狀態</th>
-            <th width="12%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="align-middle" v-for="item in orders" :key="item.id">
-            <td>{{ $filters.date(item.create_at) }}</td>
-            <td>{{ item.user.name }}</td>
-            <td>{{ item.user.email }}</td>
-            <td>{{ item.user.tel }}</td>
-            <td>{{ item.user.address }}</td>
-            <td>
-              <div class="h5">{{ item.total }} 元</div>
-            </td>
-            <td class="text-end">
-              <strong v-if="item.is_paid" class="text-success">已付款</strong>
-              <span v-else class="text-muted">未付款</span>
-            </td>
-            <td class="text-end">
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm"
-                  @click="openModal('edit', item)"
-                >
-                  編輯
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="deleteOrder(item)"
-                >
-                  <span
-                    v-if="loadingStatus.loadingItem === item.id"
-                    class="material-icons animate-spin"
-                  >
-                    cached
-                  </span>
-                  刪除
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="8" class="text-end">
+  <div class="container content">
+    <h1 class="text-center">訂單列表</h1>
+    <!-- 訂單列表 -->
+    <table class="table align-middle mt-4">
+      <thead>
+        <tr>
+          <th width="8%">訂單日期</th>
+          <th width="9%">客戶姓名</th>
+          <th width="10%">客戶信箱</th>
+          <th width="10%">客戶電話</th>
+          <th width="18%">客戶地址</th>
+          <th width="11%">訂單總價</th>
+          <th class="text-end" width="9%">付款狀態</th>
+          <th width="12%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="align-middle" v-for="item in orders" :key="item.id">
+          <td>{{ $filters.date(item.create_at) }}</td>
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.user.email }}</td>
+          <td>{{ item.user.tel }}</td>
+          <td>{{ item.user.address }}</td>
+          <td>
+            <div class="h5">{{ $filters.currency(item.total) }} 元</div>
+          </td>
+          <td class="text-end">
+            <strong v-if="item.is_paid" class="text-success">已付款</strong>
+            <span v-else class="text-muted">未付款</span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
               <button
-                class="btn btn-outline-danger"
                 type="button"
-                @click="openModal('delete', item)"
-                :disabled="orders <= 1"
+                class="btn btn-outline-primary btn-sm"
+                @click="openModal('edit', item)"
+              >
+                編輯
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="deleteOrder(item)"
               >
                 <span
-                  v-if="loadingStatus.loadingItem === 1"
+                  v-if="loadingStatus.loadingItem === item.id"
                   class="material-icons animate-spin"
                 >
                   cached
                 </span>
-                刪除所有訂單
+                刪除
               </button>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      <div class="d-flex justify-content-center mt-5">
-        <Pagination :page="pagination" @get-product="getOrder"></Pagination>
-      </div>
-
-      <!-- Modal -->
-      <AdminOrderModal
-        ref="adminOrderModal"
-        :edit-order="tempOrder"
-        @update-order="updateOrder"
-      ></AdminOrderModal>
-      <!-- 刪除按鈕彈出 Modal -->
-      <DelAllOrders
-        ref="adminOrderDelModal"
-        @delete-all-orders="deleteAllOrders"
-      ></DelAllOrders>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="8" class="text-end">
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              @click="openModal('delete', item)"
+              :disabled="orders <= 1"
+            >
+              <span
+                v-if="loadingStatus.loadingItem === 1"
+                class="material-icons animate-spin"
+              >
+                cached
+              </span>
+              刪除所有訂單
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="d-flex justify-content-center mt-5">
+      <Pagination :page="pagination" @get-product="getOrder"></Pagination>
     </div>
+
+    <!-- Modal -->
+    <AdminOrderModal
+      ref="adminOrderModal"
+      :edit-order="tempOrder"
+      @update-order="updateOrder"
+    ></AdminOrderModal>
+    <!-- 刪除按鈕彈出 Modal -->
+    <DelAllOrders
+      ref="adminOrderDelModal"
+      @delete-all-orders="deleteAllOrders"
+    ></DelAllOrders>
   </div>
 </template>
 

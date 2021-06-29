@@ -56,11 +56,11 @@
       </div>
     </td>
     <td class="text-end">
-      {{ item.product.price }}
+      {{ $filters.currency(item.product.price) }}
     </td>
 
     <td class="text-end">
-      <small class="text-success">價格：{{ item.total }}</small>
+      <small class="text-success">價格：{{ $filters.currency(item.total) }}</small>
     </td>
   </tr>
 </template>
