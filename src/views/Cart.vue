@@ -49,7 +49,7 @@
       </tfoot>
     </table>
   </div>
-  <div class="container">
+  <div class="container content">
     <div class="my-5 row justify-content-center">
       <Form ref="form" v-slot="{ errors }" @submit="onSubmit" class="col-md-6">
         <div class="mb-3">

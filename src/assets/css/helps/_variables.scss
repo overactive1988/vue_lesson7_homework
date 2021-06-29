@@ -36,6 +36,7 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
+$nobeta:  #562a4d !default;
 $blue:    #0d6efd !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
@@ -50,6 +51,7 @@ $cyan:    #0dcaf0 !default;
 
 // scss-docs-start colors-map
 $colors: (
+  "nobeta":     $nobeta,
   "blue":       $blue,
   "indigo":     $indigo,
   "purple":     $purple,
@@ -67,7 +69,7 @@ $colors: (
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
-$primary:       #562a4d;//$blue !default;
+$primary:       $nobeta;//$blue !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
@@ -99,6 +101,16 @@ $color-contrast-dark:      $black !default;
 $color-contrast-light:     $white !default;
 
 // fusv-disable
+$nobeta-100: tint-color($nobeta, 80%) !default;
+$nobeta-200: tint-color($nobeta, 60%) !default;
+$nobeta-300: tint-color($nobeta, 40%) !default;
+$nobeta-400: tint-color($nobeta, 20%) !default;
+$nobeta-500: $nobeta !default;
+$nobeta-600: shade-color($nobeta, 20%) !default;
+$nobeta-700: shade-color($nobeta, 40%) !default;
+$nobeta-800: shade-color($nobeta, 60%) !default;
+$nobeta-900: shade-color($nobeta, 80%) !default;
+
 $blue-100: tint-color($blue, 80%) !default;
 $blue-200: tint-color($blue, 60%) !default;
 $blue-300: tint-color($blue, 40%) !default;

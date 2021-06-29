@@ -2,6 +2,9 @@
   <div class="container content">
     <h1 class="text-center">產品列表</h1>
     <!-- 產品列表 -->
+    <div class="d-flex justify-content-center mt-5">
+      <Pagination :page="pagination" @get-product="getProducts"></Pagination>
+    </div>
     <table class="table align-middle mt-4">
       <thead>
         <tr>
@@ -9,9 +12,9 @@
           <th width="10%">產品縮圖</th>
           <th width="10%">產品名稱</th>
           <th width="27%">產品敘述</th>
-          <th width="20%">商品規格</th>
+          <th width="17%">商品規格</th>
           <th width="9%">價格</th>
-          <th width="20%"></th>
+          <th width="23%"></th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +32,7 @@
           <td>
             <div class="btn-group btn-group-sm">
               <router-link
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-primary"
                 :to="`/product/${item.id}`"
                 >查看更多</router-link
               >
@@ -63,7 +66,7 @@
 
 <script>
 import Pagination from "@/components/Pagination.vue";
-import emitter from '../assets/js/methods/emitter';
+import emitter from "../assets/js/methods/emitter";
 export default {
   data() {
     return {

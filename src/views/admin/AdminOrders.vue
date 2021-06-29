@@ -1,6 +1,9 @@
 <template>
   <div class="container content">
     <h1 class="text-center">訂單列表</h1>
+    <div class="d-flex justify-content-center mt-5">
+      <Pagination :page="pagination" @get-product="getOrder"></Pagination>
+    </div>
     <!-- 訂單列表 -->
     <table class="table align-middle mt-4">
       <thead>
