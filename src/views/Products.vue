@@ -63,7 +63,7 @@
 
 <script>
 import Pagination from "@/components/Pagination.vue";
-
+import emitter from '../assets/js/methods/emitter';
 export default {
   data() {
     return {
@@ -124,6 +124,7 @@ export default {
         .post(url, cartInfo)
         .then((res) => {
           this.loadingStatus.loadingItem = "";
+          emitter.emit("update-cart");
           alert(res.data.message);
         })
         .catch((error) => {

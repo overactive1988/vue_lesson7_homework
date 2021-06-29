@@ -221,6 +221,18 @@
                 >
                 </textarea>
               </div>
+              <hr />
+              <div class="form-group">
+                <label for="stuck">庫存(選填)</label>
+                <input
+                  id="stuck"
+                  type="number"
+                  min="0"
+                  class="form-control mt-1"
+                  placeholder="請輸入庫存量"
+                  v-model.number="newProduct.stuck"
+                />
+              </div>
               <div class="form-group mt-3">
                 <div class="form-check">
                   <input

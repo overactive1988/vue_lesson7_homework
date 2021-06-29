@@ -67,7 +67,7 @@
                     bg-secondary
                     font-monospace
                   "
-                  >{{ this.cartItems }}
+                  >{{ cartItems }}
                   <span class="visually-hidden">unread messages</span></span
                 >
               </span>
@@ -80,7 +80,9 @@
 </template>
 
 <script>
+import emitter from '../assets/js/methods/emitter';
 export default {
+
   data() {
     return {
       cartItems: "",
@@ -95,7 +97,6 @@ export default {
           // console.log(res);
           if (res.data.success) {
             this.cartItems = res.data.data.carts.length;
-            console.log(this.cartItems);
           }
         })
         .catch((error) => {
@@ -103,8 +104,11 @@ export default {
         });
     },
   },
-  created() {
+  mounted() {
     this.getCartItem();
+    emitter.on('update-cart',()=>{
+      this.getCartItem();
+    })
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container content">
+  <div class="container mt-4">
     <h1 class="text-center">購物車列表</h1>
     <div class="text-end mb-2">
       <button
@@ -145,6 +145,7 @@
 
 <script>
 import UserCart from "../components/UserCart.vue";
+import emitter from '../assets/js/methods/emitter';
 export default {
   data() {
     return {
@@ -191,6 +192,7 @@ export default {
           // console.log(res);
           if (res.data.success) {
             this.cart = res.data.data;
+            emitter.emit("update-cart");
             console.log(this.cart);
           }
         })

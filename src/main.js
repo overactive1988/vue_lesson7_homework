@@ -13,7 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.vue";
 import router from "./router";
 
-import { date, currency } from './assets/js/methods/filters';
+import { date, currency } from "./assets/js/methods/filters";
 
 // 定義驗證規則
 Object.keys(rules).forEach((rule) => {

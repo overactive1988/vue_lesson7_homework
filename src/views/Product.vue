@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import emitter from '../assets/js/methods/emitter';
 export default {
   data() {
     return {
@@ -123,6 +124,7 @@ export default {
         .then((res) => {
           this.loadingStatus.loadingItem = "";
           console.log(res);
+          emitter.emit("update-cart");
           alert(res.data.message);
           this.qty = 1;
         })

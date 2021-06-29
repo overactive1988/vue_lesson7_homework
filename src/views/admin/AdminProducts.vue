@@ -108,7 +108,7 @@ export default {
     // 取得產品列表
     getData(num = this.pagination.current_page || 1) {
       // 參數預設值
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${num}`;
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${num}`;
       this.$http
         .get(url)
         .then((res) => {
@@ -116,6 +116,7 @@ export default {
             const { products, pagination } = res.data;
             this.products = products;
             this.pagination = pagination;
+            console.log(this.products);
             this.getAllproducts();
           }
         })
@@ -139,7 +140,7 @@ export default {
       this.$http
         .delete(url)
         .then((res) => {
-          this.$refs.adminDelModal.closeAdminModal(); // 關掉 modal
+          this.$refs.adminDelModal.closeModal(); // 關掉 modal
           alert(`已刪除${this.tempProduct.title}商品`);
           console.log(res.data);
           this.getData();
@@ -190,7 +191,7 @@ export default {
       this.$http[httpMethod](url, { data: tempProduct }) // post 或 put
         .then((res) => {
           if (res.data.success) {
-            this.$refs.adminControlModal.closeAdminModal(); // 關掉 modal
+            this.$refs.adminControlModal.closeModal(); // 關掉 modal
             this.getData(); // 重整畫面
           } else {
             alert(res.data.message);
