@@ -1,9 +1,34 @@
 <template>
-  <footer class="bg-dark fs-7 p-3 text-center position-relative">
-    <div class="position-absolute copyRight">
+  <footer
+    class="
+      bg-dark
+      fs-7
+      p-3
+      text-center
+      position-relative
+      d-flex d-sm-block
+      flex-column
+    "
+  >
+    <div
+      class="
+        order-2
+        mt-2 mt-sm-0
+        position-sm-absolute position-absolute
+        copyRight
+      "
+    >
       <nav>
-        <ul class="d-flex justify-content-between p-1 mb-1 list-unstyled">
-          <li>
+        <ul
+          class="
+            d-flex
+            justify-content-sm-between justify-content-center
+            p-1
+            mb-1
+            list-unstyled
+          "
+        >
+          <li class="px-2 px-sm-0">
             <a
               class="text-link"
               href="https://www.facebook.com/tokyofarmer"
@@ -21,7 +46,7 @@
                 ></path></svg
             ></a>
           </li>
-          <li>
+          <li class="px-2 px-sm-0">
             <a
               class="text-link"
               href="https://www.instagram.com/leo_tokyofarmer/"
@@ -39,7 +64,7 @@
                 ></path></svg
             ></a>
           </li>
-          <li>
+          <li class="px-2 px-sm-0">
             <a
               class="text-link"
               href="https://www.youtube.com/channel/UC_AyDfrqqpUg-6vVz72vS5g"

@@ -6,7 +6,7 @@
           <img
             src="../assets/images/logo.png"
             alt="LITTLE WITCH NOBETA"
-            width="140"
+            width="180"
             class="d-inline-block align-text-top"
           />
         </router-link>
@@ -29,28 +29,28 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <router-link
-              class="nav-link text-decoration-none header-nav-link"
+              class="nav-link text-decoration-none header-nav-link fs-5"
               to="/admin"
               >管理介面首頁<span class="text-uppercase">admin</span></router-link
             >
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link text-decoration-none header-nav-link"
+              class="nav-link text-decoration-none header-nav-link fs-5"
               to="/admin/products"
               >商品列表<span class="text-uppercase">products</span></router-link
             >
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link text-decoration-none header-nav-link"
+              class="nav-link text-decoration-none header-nav-link fs-5"
               to="/admin/orders"
               >訂單列表<span class="text-uppercase">orders</span></router-link
             >
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link text-decoration-none header-nav-link"
+              class="nav-link text-decoration-none header-nav-link fs-5"
               to="/admin/coupon"
               >優惠券設定<span class="text-uppercase">coupon</span></router-link
             >
