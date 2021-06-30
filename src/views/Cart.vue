@@ -44,7 +44,9 @@
       <tfoot>
         <tr>
           <td colspan="7" class="text-end">總計</td>
-          <td v-if="cart?.carts?.length >=1" class="text-end">{{ $filters.currency(this.cart.total) }}</td>
+          <td v-if="cart?.carts?.length >= 1" class="text-end">
+            {{ $filters.currency(this.cart.total) }}
+          </td>
           <td v-else class="text-end">尚無商品</td>
         </tr>
       </tfoot>
@@ -131,11 +133,12 @@
             class="btn btn-danger"
             :disabled="cart.carts <= 1"
           >
-            <i
-              v-if="loadingStatus.loadingItem === 1"
-              class="fas fa-spinner fa-pulse"
-              @click="validate"
-            ></i>
+            <span
+              v-if="loadingStatus.loadingItem === 2"
+              class="material-icons animate-spin"
+            >
+              cached
+            </span>
             送出訂單
           </button>
         </div>
@@ -146,7 +149,7 @@
 
 <script>
 import UserCart from "../components/UserCart.vue";
-import emitter from '../assets/js/methods/emitter';
+import emitter from "../assets/js/methods/emitter";
 export default {
   data() {
     return {
@@ -266,7 +269,7 @@ export default {
       return phoneNumber.test(value) ? true : "需為正確的 手機號碼";
     },
     onSubmit() {
-      this.loadingStatus.loadingItem = 1;
+      this.loadingStatus.loadingItem = 2;
       const orderInfo = {
         data: {
           user: this.form.user,
@@ -282,8 +285,8 @@ export default {
           if (res.data.success) {
             this.$refs.form.resetForm();
             this.form.message = "";
-            this.loadingStatus.loadingItem = "";
             alert(res.data.message);
+            this.loadingStatus.loadingItem = "";
             this.getCart();
           }
         })
