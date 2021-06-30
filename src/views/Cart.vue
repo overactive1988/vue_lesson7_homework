@@ -25,10 +25,10 @@
           <th width="10%">縮圖</th>
           <th width="10%">類別</th>
           <th width="15%">品名</th>
-          <th width="15%">產品敘述</th>
+          <th width="15%">商品敘述</th>
           <th width="15%">數量</th>
           <th width="10%" class="text-end">單價</th>
-          <th width="10%" class="text-end">合計</th>
+          <th width="12%" class="text-end">合計</th>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +44,8 @@
       <tfoot>
         <tr>
           <td colspan="7" class="text-end">總計</td>
-          <td class="text-end">{{ $filters.currency(this.cart.total) }}</td>
+          <td v-if="cart?.carts?.length >=1" class="text-end">{{ $filters.currency(this.cart.total) }}</td>
+          <td v-else class="text-end">尚無商品</td>
         </tr>
       </tfoot>
     </table>

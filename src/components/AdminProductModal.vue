@@ -199,12 +199,12 @@
               <hr />
 
               <div class="form-group">
-                <label for="description">產品描述</label>
+                <label for="description">商品描述</label>
                 <textarea
                   id="description"
                   type="text"
                   class="form-control mt-1"
-                  placeholder="請輸入產品描述"
+                  placeholder="請輸入商品描述"
                   rows="6"
                   v-model.trim="newProduct.description"
                 >

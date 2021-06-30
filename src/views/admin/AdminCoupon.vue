@@ -3,7 +3,7 @@
     <h1 class="text-center">優惠券</h1>
     <div class="text-end mt-4">
       <button @click="openModal('new')" class="btn btn-primary">
-        建立新的產品
+        建立新的商品
       </button>
     </div>
     <!-- 訂單列表 -->

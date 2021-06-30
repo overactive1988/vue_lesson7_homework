@@ -14,7 +14,7 @@
       class="
         order-2
         mt-2 mt-sm-0
-        position-sm-absolute position-absolute
+        position-sm-absolute
         copyRight
       "
     >

@@ -3,16 +3,16 @@
     <h1 class="text-center">商品列表</h1>
     <div class="text-end mt-4">
       <button @click="openModal('new')" class="btn btn-primary">
-        建立新的產品
+        建立新的商品
       </button>
     </div>
     <table class="table mt-4">
       <thead>
         <tr>
           <th width="6%">排序</th>
-          <th width="10%">產品縮圖</th>
-          <th width="10%">產品名稱</th>
-          <th width="20%">產品敘述</th>
+          <th width="10%">商品縮圖</th>
+          <th width="10%">商品名稱</th>
+          <th width="20%">商品敘述</th>
           <th width="12%">商品規格</th>
           <th width="10%">原價</th>
           <th width="10%">售價</th>
@@ -58,7 +58,7 @@
       </tbody>
     </table>
     <p>
-      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
+      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項商品
     </p>
     <div class="d-flex justify-content-center mt-5 mb-4">
       <Pagination :page="pagination" @get-product="getData"></Pagination>
@@ -105,7 +105,7 @@ export default {
     this.getData();
   },
   methods: {
-    // 取得產品列表
+    // 取得商品列表
     getData(num = this.pagination.current_page || 1) {
       // 參數預設值
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${num}`;

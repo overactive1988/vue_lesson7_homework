@@ -1,7 +1,7 @@
 <template>
   <div class="container content">
-    <h1 class="text-center">產品列表</h1>
-    <!-- 產品列表 -->
+    <h1 class="text-center">商品列表</h1>
+    <!-- 商品列表 -->
     <div class="d-flex justify-content-center mt-5">
       <Pagination :page="pagination" @get-product="getProducts"></Pagination>
     </div>
@@ -9,9 +9,9 @@
       <thead>
         <tr>
           <th width="8%">排序</th>
-          <th width="10%">產品縮圖</th>
-          <th width="10%">產品名稱</th>
-          <th width="27%">產品敘述</th>
+          <th width="10%">商品縮圖</th>
+          <th width="10%">商品名稱</th>
+          <th width="27%">商品敘述</th>
           <th width="17%">商品規格</th>
           <th width="9%">價格</th>
           <th width="23%"></th>
@@ -56,7 +56,7 @@
       </tbody>
     </table>
     <p class="mt-4">
-      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項產品
+      總共有 <span id="productCount">{{ allproductsNum.length }}</span> 項商品
     </p>
     <div class="d-flex justify-content-center mt-5 mb-6">
       <Pagination :page="pagination" @get-product="getProducts"></Pagination>
@@ -84,7 +84,7 @@ export default {
     Pagination,
   },
   methods: {
-    // 取得產品列表
+    // 取得商品列表
     getProducts(num = this.pagination.current_page || 1) {
       // 參數預設值
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${num}`;
